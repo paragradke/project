@@ -2,16 +2,16 @@ import { Entity, PrimaryGeneratedColumn, Column, ManyToMany, JoinTable } from 't
 
 @Entity('users')
 export class User {
-   @PrimaryGeneratedColumn()
-   id: number;
+  @PrimaryGeneratedColumn('uuid') 
+  id: string;
 
-   @Column({length: 50})
-   name: string;
+  @Column({length: 50})
+  name: string;
 
-   @Column()
-   email: string;
+  @Column()
+  email: string;
 
-   @ManyToMany(() => User)
-   @JoinTable()
-   connections: User[]
+  @ManyToMany(() => User, connections => connections.connections)
+  @JoinTable()
+  connections: User[]
 }
